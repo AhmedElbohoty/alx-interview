@@ -12,7 +12,7 @@ def pascal_triangle(n):
         - Empty list if n <= 0
         - Else, list of lists
     """
-    if n <= 0:
+    if not isinstance(n, int) or n <= 0:
         return []
 
     res = []
@@ -34,9 +34,7 @@ def calc_value(r, c):
         - c: column index
     """
     # Base case
-    if c == 1:
-        return 1
-    if r == c:
+    if c == 1 or r == c:
         return 1
 
     return calc_value(r - 1, c - 1) + calc_value(r - 1, c)
