@@ -12,6 +12,9 @@ def pascal_triangle(n):
         - Empty list if n <= 0
         - Else, list of lists
     """
+    if n <= 0:
+        return []
+
     res = []
     for row in range(1, n + 1):
         pascal_row = []
