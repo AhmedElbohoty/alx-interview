@@ -12,6 +12,7 @@ def pascal_triangle(n):
         - Empty list if n <= 0
         - Else, list of lists
     """
+    memo = {}
     if not isinstance(n, int) or n <= 0:
         return []
 
@@ -19,13 +20,13 @@ def pascal_triangle(n):
     for row in range(1, n + 1):
         pascal_row = []
         for col in range(1, row + 1):
-            pascal_row.append(calc_value(row, col))
+            pascal_row.append(calc_value(row, col, memo))
         res.append(pascal_row)
 
     return res
 
 
-def calc_value(r, c):
+def calc_value(r, c, memo):
     """
     Calculates value at row and col index
 
@@ -37,4 +38,10 @@ def calc_value(r, c):
     if c == 1 or r == c:
         return 1
 
-    return calc_value(r - 1, c - 1) + calc_value(r - 1, c)
+    if (r, c) in memo:
+        return memo[(r, c)]
+
+    else:
+        result = calc_value(r - 1, c - 1, memo) + calc_value(r - 1, c, memo)
+        memo[(r, c)] = result
+        return result
