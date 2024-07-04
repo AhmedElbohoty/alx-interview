@@ -18,13 +18,14 @@ def canUnlockAll(boxes):
         return True
 
     opened_boxes = set()
+    opened_boxes.add(0)
 
-    for keys in boxes:
-        if len(opened_boxes) == len(boxes) - 1:
-            return True
-
+    for index, keys in enumerate(boxes):
         for key in keys:
+            if index == key:
+                continue
+
             if key <= len(boxes):
                 opened_boxes.add(key)
 
-    return False
+    return len(opened_boxes) == len(boxes)
