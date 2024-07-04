@@ -11,9 +11,12 @@ def canUnlockAll(boxes):
     Args:
        - boxes: is a list of lists
     '''
+    if not isinstance(boxes, list):
+        return False
+
     if len(boxes) == 0:
         return True
-    
+
     opened_boxes = set()
 
     for keys in boxes:
