@@ -24,7 +24,10 @@ def minOperations(n):
       - n (number): Number of operations.
     """
 
-    if n == 1:
+    if not isinstance(n, int):
+        return 0
+
+    if n <= 1:
         return 0
 
     operations = 0
