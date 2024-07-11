@@ -30,12 +30,8 @@ def minOperations(n):
     operations = 0
 
     for i in range(2, n + 1):
-        print("i", i)
         while n % i == 0:
-            print('n', n)
             operations += i
             n = n // i
-        print('==========')
 
-    print(operations)
     return operations
