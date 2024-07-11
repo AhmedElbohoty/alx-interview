@@ -31,10 +31,17 @@ def minOperations(n):
         return 0
 
     operations = 0
+    length = 1
+    clipboard = 0
 
-    for i in range(2, n + 1):
-        while n % i == 0:
-            operations += i
-            n = n // i
+    while length < n:
+        # If n is divisible by length, copy
+        if n % length == 0:
+            clipboard = length
+            operations += 1
+
+        length += clipboard
+
+        operations += 1
 
     return operations
