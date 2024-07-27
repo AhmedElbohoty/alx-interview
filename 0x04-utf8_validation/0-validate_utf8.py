@@ -18,15 +18,12 @@ def validUTF8(data):
     Check if data is valid utf-8
 
     Notes:
-    1- Byte value must be between 0 and 255.
-    2- The leading byte are: 0xxxxxxx, 110xxxxx, 1110xxxx and 11110xxx
-    3- The continuation byte is 10xxxxxx
+    1- The leading byte are: 0xxxxxxx, 110xxxxx, 1110xxxx and 11110xxx
+    2- The continuation byte is 10xxxxxx
     '''
 
     bytes_count = 0
     for byte in data:
-        if not 0 <= byte <= 255:
-            return False
 
         if bytes_count == 0:
             # Check for 1-byte character 0xxxxxxx
