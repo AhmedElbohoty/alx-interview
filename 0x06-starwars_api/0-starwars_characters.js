@@ -1,7 +1,7 @@
 #!/usr/bin/node
-const request = require("request");
+const request = require('request');
 
-function fetchCharacter(characterList, index) {
+function fetchCharacter (characterList, index) {
   if (!characterList[index]) return;
 
   request(characterList[index], (error, _, body) => {
@@ -15,7 +15,7 @@ function fetchCharacter(characterList, index) {
   });
 }
 
-function fetchMovie(movieId) {
+function fetchMovie (movieId) {
   const endpoint = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
 
   request(endpoint, (error, _, body) => {
