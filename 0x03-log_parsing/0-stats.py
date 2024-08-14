@@ -3,33 +3,25 @@
 script that reads stdin line by line and computes metrics:
 '''
 import sys
-import re
 
 status_code = [200, 301, 400, 401, 403, 404, 405, 500]
 log = {'file_size': 0, 'code_list': {str(code): 0 for code in status_code}}
 
 
-pattern = re.compile(
-    # <IP Address>
-    r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \['
-    # [<date>] "GET /projects/260 HTTP/1.1"
-    r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] "GET /projects/260 HTTP/1.1" '
-    # <status code> <file size>
-    r'(.{3}) (\d+)')
-
-
 def parse_line(line):
     '''Parse line'''
-    # Use fullmatch to match the whole line
-    match = pattern.fullmatch(line)
+    items = line.split()
 
-    if match:
-        code = match.group(1)
-        size = match.group(2)
-
+    try:
+        size = items[-1]
         log['file_size'] += int(size)
-        if code.isdecimal():
+
+        code = items[-2]
+        if int(code) in status_code:
             log['code_list'][code] += 1
+
+    except Exception:
+        pass
 
 
 def print_codes():
